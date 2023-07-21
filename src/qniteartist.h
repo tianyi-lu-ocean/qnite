@@ -2,9 +2,21 @@
 #define QNITE_ARTIST_H
 
 #include "qnanoquickitem.h"
+#include <QMetaObject>
 
 class QnitePen;
 class QniteAxes;
+// in Qt6 have to use opaque pointer
+#ifndef OPAQUE_PTR_QnitePen
+    #define OPAQUE_PTR_QnitePen
+    Q_DECLARE_OPAQUE_POINTER(QnitePen*)
+#endif
+
+#ifndef OPAQUE_PTR_QniteAxes
+    #define OPAQUE_PTR_QniteAxes
+    Q_DECLARE_OPAQUE_POINTER(QniteAxes*)
+#endif
+        
 class QniteArtist : public QNanoQuickItem {
   Q_OBJECT
   Q_PROPERTY(QniteAxes *axes READ axes NOTIFY axesChanged)

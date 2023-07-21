@@ -1,5 +1,6 @@
 find_package(
-    Qt5
+    # Qt5
+	Qt6
 COMPONENTS
     Quick
 REQUIRED
@@ -48,7 +49,8 @@ STATIC
 target_link_libraries(
     qnite
 PUBLIC
-    Qt5::Quick
+    # Qt5::Quick
+	Qt6::Quick
     qnanopainter
 )
 
@@ -56,6 +58,14 @@ target_compile_features(
     qnite
 PUBLIC
     cxx_std_14
+)
+
+target_compile_definitions(
+    qnite
+PRIVATE
+    QNANO_QT_GL_INCLUDE
+	QNANO_BUILD_GL_BACKENDS
+    # QNANO_ENABLE_GLES3
 )
 
 target_include_directories(

@@ -1,9 +1,13 @@
 project(qnanopainter)
 
 find_package(
-    Qt5
+    # Qt5
+	Qt6
 COMPONENTS
+	Widgets
+	OpenGL
     Quick
+	OpenGLWidgets
 REQUIRED
 )
 
@@ -27,8 +31,10 @@ STATIC
     qnanopainter/libqnanopainter/qnanoquickitem.cpp
     qnanopainter/libqnanopainter/qnanoquickitempainter.cpp
     qnanopainter/libqnanopainter/nanovg/nanovg.c
-    $<$<OR:$<BOOL:${ANDROID}>,$<BOOL:${IOS}>,$<BOOL:${WIN32}>>:qnanopainter/libqnanopainter/private/qnanobackendgles2.cpp>
-    $<$<OR:$<BOOL:${ANDROID}>,$<BOOL:${IOS}>,$<BOOL:${WIN32}>>:qnanopainter/libqnanopainter/private/qnanobackendgles3.cpp>
+    # $<$<OR:$<BOOL:${ANDROID}>,$<BOOL:${IOS}>,$<BOOL:${WIN32}>>:qnanopainter/libqnanopainter/private/qnanobackendgles2.cpp>
+    # $<$<OR:$<BOOL:${ANDROID}>,$<BOOL:${IOS}>,$<BOOL:${WIN32}>>:qnanopainter/libqnanopainter/private/qnanobackendgles3.cpp>
+	$<$<OR:$<BOOL:${ANDROID}>,$<BOOL:${IOS}>>:qnanopainter/libqnanopainter/private/qnanobackendgles2.cpp>
+    $<$<OR:$<BOOL:${ANDROID}>,$<BOOL:${IOS}>>:qnanopainter/libqnanopainter/private/qnanobackendgles3.cpp>
     $<$<NOT:$<BOOL:${ANDROID}>>:qnanopainter/libqnanopainter/private/qnanobackendgl2.cpp>
     $<$<NOT:$<BOOL:${ANDROID}>>:qnanopainter/libqnanopainter/private/qnanobackendgl3.cpp>
     
@@ -45,14 +51,20 @@ target_compile_definitions(
     qnanopainter
 PRIVATE
     QNANO_QT_GL_INCLUDE
-    QNANO_ENABLE_GLES3
+	QNANO_BUILD_GL_BACKENDS
+    # QNANO_ENABLE_GLES3
 )
 
 target_link_libraries(
     qnanopainter
 PRIVATE
-    Qt5::Quick
-    $<$<BOOL:${WIN32}>:Qt5::Gui_GLESv2>
+    # Qt5::Quick
+	Qt6::Widgets
+	Qt6::Quick
+	Qt6::OpenGL
+	Qt6::OpenGLWidgets
+    # $<$<BOOL:${WIN32}>:Qt5::Gui_GLESv2>
+	# $<$<BOOL:${WIN32}>:GLESv2>
     $<$<NOT:$<BOOL:${WIN32}>>:GL>
 )
 

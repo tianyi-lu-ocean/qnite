@@ -6,6 +6,13 @@
 class QniteArtist;
 class QniteAxis;
 class QniteTool;
+
+// in Qt6 have to use opaque pointer
+#ifndef OPAQUE_PTR_QniteAxis
+#define OPAQUE_PTR_QniteAxis
+Q_DECLARE_OPAQUE_POINTER(QniteAxis*)
+#endif
+
 class QniteAxes : public QQuickItem {
   friend class QniteTool;
 
@@ -70,16 +77,21 @@ protected:
 private:
   static void append_artists(QQmlListProperty<QniteArtist> *property,
                              QniteArtist *value);
+  /*static QniteArtist *at_artists(QQmlListProperty<QniteArtist> *property,
+                                 int index);*/
   static QniteArtist *at_artists(QQmlListProperty<QniteArtist> *property,
-                                 int index);
+                                 qsizetype index);
   static void clear_artists(QQmlListProperty<QniteArtist> *property);
-  static int count_artists(QQmlListProperty<QniteArtist> *property);
+  // static int count_artists(QQmlListProperty<QniteArtist> *property);
+  static qsizetype count_artists(QQmlListProperty<QniteArtist> *property);
 
   static void append_tools(QQmlListProperty<QniteTool> *property,
                            QniteTool *value);
-  static QniteTool *at_tools(QQmlListProperty<QniteTool> *property, int index);
+  // static QniteTool *at_tools(QQmlListProperty<QniteTool> *property, int index);
+  static QniteTool *at_tools(QQmlListProperty<QniteTool> *property, qsizetype index);
   static void clear_tools(QQmlListProperty<QniteTool> *property);
-  static int count_tools(QQmlListProperty<QniteTool> *property);
+  // static int count_tools(QQmlListProperty<QniteTool> *property);
+  static qsizetype count_tools(QQmlListProperty<QniteTool> *property);
 
   qreal m_lowerXBound;
   qreal m_upperXBound;

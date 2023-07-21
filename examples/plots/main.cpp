@@ -1,5 +1,7 @@
+#include <QQuickWindow>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QSGRendererInterface>
 
 #include <qnite.h>
 
@@ -13,6 +15,8 @@ int main(int argc, char *argv[]) {
 #endif
 
   QGuiApplication app(argc, argv);
+
+  QQuickWindow::setGraphicsApi(QSGRendererInterface::OpenGL);
 
   QQmlApplicationEngine engine;
   engine.addImportPath(QStringLiteral("qrc:/qml"));

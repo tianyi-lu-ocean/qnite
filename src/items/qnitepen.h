@@ -21,6 +21,7 @@ public:
   Q_ENUM(LineCap)
 
   QnitePen(QObject *parent = Q_NULLPTR);
+  // virtual ~QnitePen() {}
 
   QColor stroke() const { return m_data.stroke; }
   void setStroke(QColor stroke);

@@ -1,7 +1,8 @@
 project(plots)
 
 find_package(
-    Qt5
+    # Qt5
+	Qt6
 COMPONENTS
     Quick
 REQUIRED
@@ -24,11 +25,20 @@ PUBLIC
     cxx_std_14
 )
 
+target_compile_definitions(
+    plots
+PRIVATE
+    QNANO_QT_GL_INCLUDE
+	QNANO_BUILD_GL_BACKENDS
+    # QNANO_ENABLE_GLES3
+)
+
 target_link_libraries(
     plots
 PRIVATE
     qnite
-    Qt5::Quick
+    # Qt5::Quick
+	Qt6::Quick
 )
 
 target_include_directories(

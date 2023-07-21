@@ -5,6 +5,17 @@
 
 class QniteMapper;
 class QniteTicker;
+// in Qt6 have to use opaque pointer
+#ifndef OPAQUE_PTR_QniteMapper
+#define OPAQUE_PTR_QniteMapper
+Q_DECLARE_OPAQUE_POINTER(QniteMapper*)
+#endif
+
+// in Qt6 have to use opaque pointer
+#ifndef OPAQUE_PTR_QniteTicker
+#define OPAQUE_PTR_QniteTicker
+Q_DECLARE_OPAQUE_POINTER(QniteTicker*)
+#endif
 class QniteAxis : public QniteArtist {
   Q_OBJECT
   Q_PROPERTY(qreal size READ size WRITE setSize NOTIFY sizeChanged)

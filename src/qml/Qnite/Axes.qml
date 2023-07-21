@@ -1,4 +1,4 @@
-import QtQuick 2.4
+import QtQuick
 import Qnite 1.0
 
 /*! \qmltype Axes
@@ -103,14 +103,14 @@ BasicAxes {
     Connections {
         target: axisX
 
-        onMajorTicksChanged: __plotarea.majorTicksChanged(axisX, __bottomlabels)
-        onMinorTicksChanged: __plotarea.minorTicksChanged(axisX, __bottomlabels)
+        function onMajorTicksChanged() { __plotarea.majorTicksChanged(axisX, __bottomlabels) }
+        function onMinorTicksChanged() { __plotarea.minorTicksChanged(axisX, __bottomlabels) }
     }
     Connections {
         target: axisY
 
-        onMajorTicksChanged: __plotarea.majorTicksChanged(axisY, __leftlabels)
-        onMinorTicksChanged: __plotarea.minorTicksChanged(axisY, __leftlabels)
+        function onMajorTicksChanged() { __plotarea.majorTicksChanged(axisY, __leftlabels) }
+        function onMinorTicksChanged() { __plotarea.minorTicksChanged(axisY, __leftlabels) }
     }
 
     // TODO: expose as a property so it is customizable
